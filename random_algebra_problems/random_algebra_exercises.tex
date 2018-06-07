@@ -1,0 +1,72 @@
+\documentclass[11pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[utf8]{inputenc}
+
+\let\oldgcd\gcd
+
+\renewcommand{\gcd}[2]{(#1, #2)}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\dual}[1]{(#1)^*}
+\newcommand{\order}[1]{|#1|}
+\newcommand{\divides}{\mathbin{\text{\ divides\ }}}
+\newcommand{\cyclic}[1]{\langle #1 \rangle}
+
+\newcommand{\necessary}{$(\rightarrow)$ }
+\newcommand{\sufficient}{$(\leftarrow)$ }
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\newenvironment{definition}[2][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\begin{document}
+ 
+%\renewcommand{\qedsymbol}{\filledbox}
+ 
+\title{Random Algebra/Number Theory Problems}
+\author{Shaun Ostoic} 
+ 
+\maketitle
+
+\begin{exercise}{1}
+Let $G$ be a finite group. Show that $a \in G$ is a generator of $G$ if and only if $a^{\frac{\order{G}}{q}} \neq 1$, for each prime factor $p$ of $\order{G}$.
+\end{exercise}
+
+\begin{proof}\necessary Since $a$ generates $G$, it is a cyclic group, hence $ G = \cyclic{a} $. A consequence of this is that $ \order{G} = \order{\cyclic{a}} = \order{a} $. Let us assume for sake of a contradiction, that $a^{\frac{\order{G}}{q}} = 1$ for some prime factor $ q $ of $ \order{G} $. Then we see that $ a^{\frac{\order{G}}{q}} = 1 \implies \order{a} \divides \frac{\order{G}}{q} \implies \order{a} = \order{G} < \frac{\order{G}}{q}$, which is a contradiction.
+
+\sufficient Assume $ a^{\frac{\order{G}}{q}} = 1$ for every prime factor $ q $ of $ \order{G} $. Since $ \cyclic{a} $ is a subgroup of G, $ \order{\cyclic{a}} \divides \order{G}$ (by Lagrange's Theorem. Let $ m = \frac{\order{G}}{q} $. Then 
+\[ \order{a^{m}} = \frac{\order{a}}{\gcd{m}{\order{a}}}. \]
+We claim that $ \order{a^{m}} = q$. To see this, observe that
+\[ (a^{\frac{\order{G}}{q}})^{q} = a^{\order{G}} = 1.\]
+From this we see that $ \order{a^{m}} \divides q$. Since $ a^{m} \neq 1$ and $ q $ is prime, it follows that $ \order{a^{m}} = q$. Thus,
+\[ \order{a^{m}} = \frac{\order{a}}{\gcd{m}{\order{a}}} = q\]
+\[ \order{a} = q \gcd{m}{\order{a}}\]
+\[ \implies q \divides \order{a}. \]
+Since $ q $ was an arbitrary prime factor of $ \order{G} $, we see that every prime factor of $ \order{G} \divides \order{a}$.
+\end{proof}
+
+\end{document}
+	
