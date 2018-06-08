@@ -4,43 +4,8 @@
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage[utf8]{inputenc}
 
-\let\oldgcd\gcd
-
-\renewcommand{\gcd}[2]{(#1, #2)}
- 
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\dual}[1]{(#1)^*}
-\newcommand{\order}[1]{|#1|}
-\newcommand{\divides}{\mathbin{\text{\ divides\ }}}
-\newcommand{\cyclic}[1]{\langle #1 \rangle}
-
-\newcommand{\necessary}{$(\rightarrow)$ }
-\newcommand{\sufficient}{$(\leftarrow)$ }
-
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-
-\newenvironment{definition}[2][Definition]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
- 
-\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
- 
-\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
- 
-\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
- 
-\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
- 
-\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
- 
-\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\include{algebra_commands}
+\include{fundamental_commands}
  
 \begin{document}
  
@@ -57,16 +22,52 @@ Let $G$ be a finite group. Show that $a \in G$ is a generator of $G$ if and only
 
 \begin{proof}\necessary Since $a$ generates $G$, it is a cyclic group, hence $ G = \cyclic{a} $. A consequence of this is that $ \order{G} = \order{\cyclic{a}} = \order{a} $. Let us assume for sake of a contradiction, that $a^{\frac{\order{G}}{q}} = 1$ for some prime factor $ q $ of $ \order{G} $. Then we see that $ a^{\frac{\order{G}}{q}} = 1 \implies \order{a} \divides \frac{\order{G}}{q} \implies \order{a} = \order{G} < \frac{\order{G}}{q}$, which is a contradiction.
 
-\sufficient Assume $ a^{\frac{\order{G}}{q}} = 1$ for every prime factor $ q $ of $ \order{G} $. Since $ \cyclic{a} $ is a subgroup of G, $ \order{\cyclic{a}} \divides \order{G}$ (by Lagrange's Theorem. Let $ m = \frac{\order{G}}{q} $. Then 
-\[ \order{a^{m}} = \frac{\order{a}}{\gcd{m}{\order{a}}}. \]
-We claim that $ \order{a^{m}} = q$. To see this, observe that
-\[ (a^{\frac{\order{G}}{q}})^{q} = a^{\order{G}} = 1.\]
-From this we see that $ \order{a^{m}} \divides q$. Since $ a^{m} \neq 1$ and $ q $ is prime, it follows that $ \order{a^{m}} = q$. Thus,
-\[ \order{a^{m}} = \frac{\order{a}}{\gcd{m}{\order{a}}} = q\]
-\[ \order{a} = q \gcd{m}{\order{a}}\]
-\[ \implies q \divides \order{a}. \]
-Since $ q $ was an arbitrary prime factor of $ \order{G} $, we see that every prime factor of $ \order{G} \divides \order{a}$.
+\sufficient Suppose instead that $ a $ is not a generator of $ G $. Then $\order{a} \neq \order{G} $, which means there must be a prime divisor $ q $ of $ \order{G} $ for which $ \order{a} \divides \frac{\order{G}}{q} $. To be more explicit, let us look at the prime factorization of $ \order{G} $ and of $ \order{a} $. Write $ \order{G} = q_{1}^{g_{1}} \dots q_{r}^{g_{r}}$ and $ \order{a} = q_{1}^{a_{1}} \dots q_{r}^{a_{r}}$, with $ a_{i} \leq g_{i} $ for all $ i $. It is entirely possible that $ a $ may hold each prime divsior of $ \order{G} $ in its prime factorization, but it does not necessarily have equal exponents in the factorization. Otherwise, $ a_{i} = g_{i} $ for all $ i $, hence $ \order{a} = \order{G} $. In this case, $ \order{a} $ and $ \order{G} $ must differ by at least one prime divisor $ q $. Then if we divide out that prime factor from $ \order{G} $, it follows that $ \order{a} \divides \frac{\order{G}}{q} $. By one of the previous theorems, this is equivalent to saying that $ a^{\frac{\order{G}}{q}} = 1 $, which contradicts the assumption we make in this direction of the proof.
+
 \end{proof}
+
+\begin{exercise}{2}
+Show that for any prime number $ p \geq 3 $, $ \Z_{p}^{*} $ has a primitive root.
+\end{exercise}
+
+\begin{proof}
+To show that $ \Z_{p}^{*} $ has a primitive root, it is sufficient to show that $ \order{a} = \phi(p) = p-1 $, for some $ a \in \Z_{p}^{*} $.
+\end{proof}
+
+\begin{exercise}{3}
+Show that a finite subset $ B $ of a vector space $ V $ over a field $ F $ is a basis for $ V $ if and only if every $ v \in V $ can be written uniquely as a linear combination of vectors from $ B $. That is, where $ B = \{b_{1}, \ldots b_{n}\} $, the scalars $ \alpha_{i} \in F $ for all $ i $ are unique for which
+\[ v = \alpha_{1} b_{1} + \ldots + \alpha_{n} b_{n}. \]
+
+\end{exercise}
+
+\begin{proof}
+\necessary Suppose that $ B $ is a basis for $ V $. Then $ B $ is both a spanning set, and a linearly independent set. It is a spanning set for $ V $, which means that for every $ v \in V $, there exist scalars $ \alpha_{1}, \dots \alpha_{n} \in F $ such that 
+\begin{equation} \label{eq:1}
+	v = \alpha_{1} b_{1} + \dots + \alpha_{n} b_{n}.
+\end{equation}
+$ B $ being linearly independent means that if there exist $ \lin{\eta}{1}{n}{F} $ such that
+\[ \eta_{1} b_{1} + \dots + \eta_{n} b_{n} = 0, \]
+then  $ \eta_{i} = 0 $ for all $ i $.
+
+We must now show that (\ref{eq:1}) is the only possible way to write $ v $ as a linear combination of vectors from $ B $. Suppose for sake of a contradiction that there is another such way to write $ v $, that being
+\begin{equation} \label{eq:2}
+	v = \beta_{1} b_{1} + \dots + \beta_{n} b_{n},	
+\end{equation}
+where $ \lin{\beta}{1}{n}{F} $. Using (\ref{eq:1}) and (\ref{eq:2}), we have
+\[ \beta_{1} b_{1} + \dots + \beta_{n} b_{n} = \alpha_{1} b_{1} + \dots + \alpha_{n} b_{n} \]
+\begin{equation} \label{eq:3}
+	(\alpha_{1} - \beta_{1}) b_{1} + \dots + (\alpha_{n} - \beta_{n}) b_{n} = 0 
+\end{equation}
+Let us use the assumption that $ B $ is a linearly independent set. Set $ \eta_{i} = (\alpha_{i}-  \beta_{i}) $ for each $ i $. Then (\ref{eq:3}) can be written as 
+\[ \eta_{1} b_{1} +  \dots + \eta_{n} b_{n} = 0, \]
+which implies that $ \eta_{i} = 0 $ for all $ i $ by linear indepdendence of $ B $. That is, $ \alpha_{i} - \beta_{i} = 0 $, hence $ \alpha_{i} = \beta_{i} $ for all $ i $, which proves that these two ways of writing $ v $ are the same.
+
+\sufficient Suppose that
+\end{proof}
+
+\begin{exercise}{4}
+content...
+\end{exercise}
 
 \end{document}
 	
