@@ -115,7 +115,7 @@ where $ r $ is any prime divisor of $ q $.
 \end{proof}
 
 \begin{exercise}{8}
-Define the concept of primitive root modulo $ p $, where $ p $is a prime number.
+Define the concept of primitive root modulo $ p $, where $ p $ is a prime number.
 \end{exercise}
 
 \begin{proof}[Solution]
@@ -126,12 +126,16 @@ A primitive root $ a $ modulo $ p $ is an element $ a \in \Z_{p}^{*} $ such that
 content...
 \end{exercise}
 
-\begin{exercise}{10}
+\begin{exercise}{9}
 Let $ p = 4q + 1$ be a prime number, where $ q $ is an odd prime. Show that $ 2 $ is a primitive root modulo $ p $.
 \end{exercise}
 
 \begin{proof}
-
+Suppose $ 2 $ is not a primitive root modulo $ p $, and let $ m = \order{2} $. Then $ 2^{m} \equiv 1 \mod p $, meaning $ 2^{m} - 1 = (4q + 1) \ell $, for some $ \ell $. 
+\[ 2^{m} - 1 = 4q \ell + \ell \]
+\[ \order{2^{\frac{p-1}{2}}} = \frac{\order{2}}{\gcd{\frac{p-1}{2}}{\order{2}}} \]
+\[ \order{2} \gcd{\frac{p-1}{2}}{\order{2}} = 2\]
+TODO:
 \end{proof}
 
 \begin{exercise}{10}
@@ -149,6 +153,31 @@ Define the characteristic of a ring $ R $.
 \begin{proof}[Solution]
 Given a unital ring $ R $ (a ring with $ 1 $), the characteristic $ n $ is the smallest positive integer such that $ 1 + 1 + \dots + 1 = 0 $ ($ n $ times ). That is, such that
 $ \sum_{i = 1}^{n} 1 = 0$.
+\end{proof}
+
+\begin{lemma}{2}
+Let $ g $ be a primitive root modulo $ p $, let $ a  $ be a residue modulo $ p $, and write $ a = g^{i} $ for some i.
+\begin{enumerate}
+\item $ a $ is a quadratic residue modulo $ p \iff i $ is even .
+\item $ a $ is a nonquadratic residue modulo $ p \iff i $ is odd
+\end{enumerate}
+\end{lemma}
+
+\begin{exercise}{13}
+Let $ p $ be a prime number.
+\begin{enumerate}
+\item $ a $ and $ b $ are quadratic residues modulo $ p \implies ab $ is a quadratic residue modulo $ p $.
+\item $ a $ is a quadratic residue and $ b $ is a nonquadratic residue $ \implies ab $ is a nonquadratic residue modulo $ p $.
+\item $ a $ and $ b $ are both nonquadratic residues modulo $ p \implies ab $ is a quadratic residue modulo $ p $.
+\end{enumerate}
+\end{exercise}
+
+\begin{proof}
+\case{1} Suppose both $ a $ and $ b $ are quadratic residues modulo $ p $. Then by Lemma 2 above, we can write $ a = g^{2i} $ and $ b = g^{2j} $ for some $ i $ and $ j $, and where $ g $ is a primitive root modulo $ p $. It follows that $ ab = g^{2i} g^{2j} = g^{2(i + j)} $, hence $ ab $ is a primitive root by the lemma.
+
+\case{2} Assume $ a $ is a quadratic residue, and $ b $ is a nonquadratic residue modulo $ p $. By the lemma, we can write $ a = g^{2i} $ and $ b = g^{2j+1} $, for some $ i, j $. Similar to before, we see that $ ab = g^{2i} g^{2j+1} = g^{2(i + j) + 1} $, hence $ ab $ is a nonquadratic residue modulo $ p $.
+
+\case{3} Lastly, assume both $ a $ and $ b $ are nonquadratic residues modulo $ p $. Writing $ a = g^{2i+1} $ and $ b = g^{2j+1} $, we see that $ ab = g^{2i+1} g^{2j+1} = g^{2(i + j) + 2} = g^{2(i + j + 1)} $. Thus, $ ab $ is a quadratic residue modulo $ p $.
 \end{proof}
 
 \end{document}
