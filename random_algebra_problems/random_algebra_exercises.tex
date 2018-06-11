@@ -102,8 +102,54 @@ Using the same technique as in \case{1} together with this observation yields $ 
 \end{proof}
 
 \begin{exercise}{5}
+Let $ p $ be an odd prime number, and let $ a \in \Z_{p}^{*} $. Show that $ \order{a}  = q	 $, where $ q $ is a divisor of $ p-1 $, if and only if
+\begin{enumerate}
+	\item $ a^{q} \equiv 1 \mod p $
+	\item $ a^{\frac{q}{r}} \equiv 1 \mod p$,
+\end{enumerate}
+where $ r $ is any prime divisor of $ q $.
+\end{exercise}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{exercise}{8}
+Define the concept of primitive root modulo $ p $, where $ p $is a prime number.
+\end{exercise}
+
+\begin{proof}[Solution]
+A primitive root $ a $ modulo $ p $ is an element $ a \in \Z_{p}^{*} $ such that $ \order{a} = \phi(p) $. Equivalently, a primitive root $ a $ modulo $ p $ is an element such that every residue $ b \in \Z_{p}^{*} $ can be written as $ b \equiv a^{k} \mod p$ for some $ k \in \Z $.
+\end{proof}
+
+\begin{exercise}{9}
 content...
 \end{exercise}
+
+\begin{exercise}{10}
+Let $ p = 4q + 1$ be a prime number, where $ q $ is an odd prime. Show that $ 2 $ is a primitive root modulo $ p $.
+\end{exercise}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{exercise}{10}
+Discuss $ \Z_{m} $, for a positive integer $ m $.
+\end{exercise}
+
+\begin{proof}[Solution]
+For an arbitrary positive integer $ m $, not every residue modulo $ m $ has an inverse, which is a desirable property for many applications. As such, finding a criterion for which $ \Z_{m} $ contains multiplicative inverses for each nonzero residue is an important venture. In general, any residue $ a \in \Z_{m} $ has a multiplicative inverse provided that $ \gcd{a}{m} = 1 $, and vice versa. From this point, one might ask what a residue system in which every nonzero residue has a multiplicative inverse. That is, given any residue $ a $, suppose $ \gcd{a}{m} = 1 $. The only such integers $ m $ for which $ \gcd{a}{m}  = 1 $for all $ a < m $ are the prime numbers. Thus, a residue system $ \Z_{m} $ is "complete", is a "field", contains multiplicative inverses, etc, if and only if $ m $ is prime.
+\end{proof}
+
+\begin{exercise}{12}
+Define the characteristic of a ring $ R $.
+\end{exercise}
+
+\begin{proof}[Solution]
+Given a unital ring $ R $ (a ring with $ 1 $), the characteristic $ n $ is the smallest positive integer such that $ 1 + 1 + \dots + 1 = 0 $ ($ n $ times ). That is, such that
+$ \sum_{i = 1}^{n} 1 = 0$.
+\end{proof}
 
 \end{document}
 	
