@@ -26,12 +26,21 @@ Let $G$ be a finite group. Show that $a \in G$ is a generator of $G$ if and only
 
 \end{proof}
 
+\begin{definition}{(Universal Exponent)}
+A positive integer $ \lambda  $ is called the minimal universal exponent if $ \lambda $ is the smallest integer such that $ a^{\lambda} \equiv 1 \mod n$ for all residues $ a $ such that $ \gcd{a}{n} = 1$.
+\end{definition}
+
+\begin{lemma}{1} \label{lemma:1}
+There exists a resiude of order $ \lambda $, where $ \lambda $ is the minimal universal exponent of $ p $.
+\end{lemma}
+
 \begin{exercise}{2}
 Show that for any prime number $ p \geq 3 $, $ \Z_{p}^{*} $ has a primitive root.
 \end{exercise}
 
 \begin{proof}
-To show that $ \Z_{p}^{*} $ has a primitive root, it is sufficient to show that $ \order{a} = \phi(p) = p-1 $, for some $ a \in \Z_{p}^{*} $.
+To show that $ \Z_{p}^{*} $ has a primitive root, it is sufficient to show that $ \order{a} = \phi(p) = p-1 $, for some $ a \in \Z_{p}^{*} $. Let $ \lambda $ be the minimal universal exponent of $ p $. If $ \lambda = p-1 $, then there is a residue of order $ \lambda $ by Lemma (\ref{lemma:1}1), hence there is a primitive root. Otherwise, $ \lambda < p-1 $. In this case, there are at most $ \lambda $ solutions to the equation $ x^{\lambda} - 1 \equiv 0 \mod p$, by Lagrange's Polynomial Theorem. However, since $ a^{p-1} \equiv 1 \mod p $ for all nonzero residues $ a \in \Z_{p}^{*} $ (due to Fermat's Little Theorem), there are $ p-1 > \lambda$ solutions to the above polynomial, a contradiction. Therefore, $ \lambda = p - 1 $, which proves there is a resiude of order $ \phi(p) = p -1 $, hence there is a primitive root.
+
 \end{proof}
 
 \begin{exercise}{3}
@@ -62,10 +71,37 @@ Let us use the assumption that $ B $ is a linearly independent set. Set $ \eta_{
 \[ \eta_{1} b_{1} +  \dots + \eta_{n} b_{n} = 0, \]
 which implies that $ \eta_{i} = 0 $ for all $ i $ by linear indepdendence of $ B $. That is, $ \alpha_{i} - \beta_{i} = 0 $, hence $ \alpha_{i} = \beta_{i} $ for all $ i $, which proves that these two ways of writing $ v $ are the same.
 
-\sufficient Suppose that
+\sufficient Suppose that every $ v \in V $ can be written uniquely as a linear combination of vectors from $ B $. We must show that $ B $ is both a linearly independent set, and a spanning set for $ V $. First we show that it is a spanning set. Given any $ v \in V $, by assumption we can write 
+\[ v = \alpha_{1}b_{1} + \dots + \alpha_{n} b_{n}, \] 
+for some scalars $ \lin{\alpha}{1}{n}{F} $. We are done since this is the definition of $ B $ being a spanning set for $ V $. Last, to show that it is linearly independent, suppose there exist $ \alpha_{i} \dots \alpha_{n} \in F $, such that 
+\[ \alpha_{1} b_{1} + \dots + \alpha_{n}b_{n} = 0. \]
+This is also saying that 
+\[ \alpha_{1} b_{1} + \dots + \alpha_{n}b_{n} = 0 \cdot b_{1} + \dots + 0 \cdot b_{n}, \]
+which implies that $ \alpha_{i} = 0 $ for all $ i $. This is because we've assumed that there is only one such way to write this linear combination of vectors, hence $ B $ must be linearly independent. Therefore, $ B $ is a basis for $ V $.
 \end{proof}
 
 \begin{exercise}{4}
+Let $ p $ be an odd prime and let $ k \geq 1 $.
+\begin{enumerate}
+	\item $ a $ is an odd primitive root modulo $ p^{k} \implies a $ is a primitive root modulo $ 2p^{k} $.
+	\item $ a $ is an even primitive root modulo $ p^{k} \implies a + p^{k}$ is a primitive root modulo $ 2p^{k} $.
+\end{enumerate}
+\end{exercise}
+
+\begin{proof}
+\case{1} Assume $ a $ is an odd primitive root modulo $ p^{k} $. Then $ \phi(2p^{k})  = \phi(2) \phi(p^{k}) = \phi(p^{k})$. Suppose for sake of a contradiction that $ \order{a} < \phi(2 p^{k})$, and let $ m = \order{a} $. Then $ a^{m} \equiv 1 \mod 2 p^{k} $, hence 
+$ a^{m} - 1 = 2 p^{k} \ell $ for some $ \ell $. If we bring the equation back into $ \Z^{*}_{p} $, we have $ a^{m} \equiv 1 \mod p^{k} $. However, we know that $ a $ is a primitive root modulo $ p^{k} $, so this contradicts the order of $ a $ being $ \phi(p^{k}) $. Thus, $ \order{a} = \phi(2p^{k}) $, which means $ a $ is also a primitive root modulo $ 2p^{k} $.
+
+\case{2} Assume that $ a $ is an even primitive root modulo $ p^{k} $. To prove $ a + p^{k}$ is a primitive root modulo $ 2p^{k} $, assume it is not, for sake of a contradiction. Let $m =  \order{a + p^{k}} < \phi(2p^{k}) $, which leaves us with the congruences
+\[ (a +p^{k})^{m} \equiv 1 \mod 2 p^{k}, \]
+\[ (a + p^{k})^{m} - 1 = 2 p^{k} \ell, \]
+\[ (a + p^{k})^{m} \equiv 1 \mod p^{k}, \]
+for some $ \ell $. Observe by properties of congruences that
+\[ a + p^{k} \equiv a \mod p^{k} \implies (a + p^{k})^{m} \equiv a^{m} \mod p^{k}. \]
+Using the same technique as in \case{1} together with this observation yields $ a^{m} \equiv 1 \mod p^{k} $, where $ m < \phi(p^{k}) $. We initially assumed that $ a $ is a primitive root, meaning $ \order{a} = \phi(p^{k}) $, which is contradicted by this new deduction. Therefore, $ a + p^{k} $ must be a primitive root modulo $ 2p^{k} $.
+\end{proof}
+
+\begin{exercise}{5}
 content...
 \end{exercise}
 
