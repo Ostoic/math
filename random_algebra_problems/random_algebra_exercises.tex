@@ -69,7 +69,7 @@ where $ \lin{\beta}{1}{n}{F} $. Using (\ref{eq:1}) and (\ref{eq:2}), we have
 \end{equation}
 Let us use the assumption that $ B $ is a linearly independent set. Set $ \eta_{i} = (\alpha_{i}-  \beta_{i}) $ for each $ i $. Then (\ref{eq:3}) can be written as 
 \[ \eta_{1} b_{1} +  \dots + \eta_{n} b_{n} = 0, \]
-which implies that $ \eta_{i} = 0 $ for all $ i $ by linear indepdendence of $ B $. That is, $ \alpha_{i} - \beta_{i} = 0 $, hence $ \alpha_{i} = \beta_{i} $ for all $ i $, which proves that these two ways of writing $ v $ are the same.
+which implies that $ \eta_{i} = 0 $ for all $ i $ by linear independence of $ B $. That is, $ \alpha_{i} - \beta_{i} = 0 $, hence $ \alpha_{i} = \beta_{i} $ for all $ i $, which proves that these two ways of writing $ v $ are the same.
 
 \sufficient Suppose that every $ v \in V $ can be written uniquely as a linear combination of vectors from $ B $. We must show that $ B $ is both a linearly independent set, and a spanning set for $ V $. First we show that it is a spanning set. Given any $ v \in V $, by assumption we can write 
 \[ v = \alpha_{1}b_{1} + \dots + \alpha_{n} b_{n}, \] 
@@ -132,6 +132,8 @@ Let $ p = 4q + 1$ be a prime number, where $ q $ is an odd prime. Show that $ 2 
 
 \begin{proof}
 Suppose $ 2 $ is not a primitive root modulo $ p $, and let $ m = \order{2} $. Then $ 2^{m} \equiv 1 \mod p $, meaning $ 2^{m} - 1 = (4q + 1) \ell $, for some $ \ell $. 
+
+Let $ g $ be a primitive root modulo $ p $, and write $ 2 = g^{i} $ for some $ i $.
 \[ 2^{m} - 1 = 4q \ell + \ell \]
 \[ \order{2^{\frac{p-1}{2}}} = \frac{\order{2}}{\gcd{\frac{p-1}{2}}{\order{2}}} \]
 \[ \order{2} \gcd{\frac{p-1}{2}}{\order{2}} = 2\]
@@ -173,11 +175,11 @@ Let $ p $ be a prime number.
 \end{exercise}
 
 \begin{proof}
-\case{1} Suppose both $ a $ and $ b $ are quadratic residues modulo $ p $. Then by Lemma 2 above, we can write $ a = g^{2i} $ and $ b = g^{2j} $ for some $ i $ and $ j $, and where $ g $ is a primitive root modulo $ p $. It follows that $ ab = g^{2i} g^{2j} = g^{2(i + j)} $, hence $ ab $ is a primitive root by the lemma.
+\case{1} Suppose both $ a $ and $ b $ are quadratic residues modulo $ p $. Then by Lemma 2 above, we can write $ a \equiv g^{2i} $ and $ b \equiv g^{2j} $ for some $ i $ and $ j $, and where $ g $ is a primitive root modulo $ p $. It follows that $ ab \equiv g^{2i} g^{2j} \equiv g^{2(i + j)} $, hence $ ab $ is a primitive root by the lemma.
 
-\case{2} Assume $ a $ is a quadratic residue, and $ b $ is a nonquadratic residue modulo $ p $. By the lemma, we can write $ a = g^{2i} $ and $ b = g^{2j+1} $, for some $ i, j $. Similar to before, we see that $ ab = g^{2i} g^{2j+1} = g^{2(i + j) + 1} $, hence $ ab $ is a nonquadratic residue modulo $ p $.
+\case{2} Assume $ a $ is a quadratic residue, and $ b $ is a nonquadratic residue modulo $ p $. By the lemma, we can write $ a \equiv g^{2i} $ and $ b \equiv g^{2j+1} $, for some $ i, j $. Similar to before, we see that $ ab \equiv g^{2i} g^{2j+1} =\equiv g^{2(i + j) + 1} $, hence $ ab $ is a nonquadratic residue modulo $ p $.
 
-\case{3} Lastly, assume both $ a $ and $ b $ are nonquadratic residues modulo $ p $. Writing $ a = g^{2i+1} $ and $ b = g^{2j+1} $, we see that $ ab = g^{2i+1} g^{2j+1} = g^{2(i + j) + 2} = g^{2(i + j + 1)} $. Thus, $ ab $ is a quadratic residue modulo $ p $.
+\case{3} Lastly, assume both $ a $ and $ b $ are nonquadratic residues modulo $ p $. Writing $ a \equiv g^{2i+1} $ and $ b \equiv g^{2j+1} $, we see that $ ab \equiv g^{2i+1} g^{2j+1} \equiv g^{2(i + j) + 2} \equiv g^{2(i + j + 1)} $. Thus, $ ab $ is a quadratic residue modulo $ p $.
 \end{proof}
 
 \end{document}
