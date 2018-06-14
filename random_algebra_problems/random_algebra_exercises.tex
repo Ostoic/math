@@ -123,20 +123,24 @@ A primitive root $ a $ modulo $ p $ is an element $ a \in \Z_{p}^{*} $ such that
 \end{proof}
 
 \begin{exercise}{9}
-content...
-\end{exercise}
-
-\begin{exercise}{9}
 Let $ p = 4q + 1$ be a prime number, where $ q $ is an odd prime. Show that $ 2 $ is a primitive root modulo $ p $.
 \end{exercise}
 
 \begin{proof}
-Suppose $ 2 $ is not a primitive root modulo $ p $, and let $ m = \order{2} $. Then $ 2^{m} \equiv 1 \mod p $, meaning $ 2^{m} - 1 = (4q + 1) \ell $, for some $ \ell $. 
+Suppose $ 2 $ is not a primitive root modulo $ p $, and let $ m = \order{2} < p - 1 $. Then $ 2^{m} \equiv 1 \mod p $, meaning $ 2^{m} - 1 = (4q + 1) \ell $, for some $ \ell $. 
 
-Let $ g $ be a primitive root modulo $ p $, and write $ 2 = g^{i} $ for some $ i $.
-\[ 2^{m} - 1 = 4q \ell + \ell \]
-\[ \order{2^{\frac{p-1}{2}}} = \frac{\order{2}}{\gcd{\frac{p-1}{2}}{\order{2}}} \]
-\[ \order{2} \gcd{\frac{p-1}{2}}{\order{2}} = 2\]
+Let $ g $ be a primitive root modulo $ p $, and write $ 2 \equiv g^{i} $ for some $ i $. Then $ 2^{m} \equiv g^{im} \equiv g^{p-1} \equiv 1 \mod p $. At this point, we can see that since $ g^{im} \equiv 1 $, $ \order{g} \divides im $. If we assumed $ \order{2} = p-1 = 4q $, it would follow that
+\[ \order{g^{i}} = \frac{4q}{\gcd{i}{4q}} = 4q,\]
+implying $ \gcd{i}{4q}  = 1$. Thus it is sufficient to prove $ \gcd{q}{i} = 1 $ and $ i $ is odd. Suppose instead that $ i$ is even. Raising both powers of the congruence $ g^{\frac{p-1}{2}} \equiv g^{2q} \equiv -1 $ by $ i $, we have
+\[ g^{2qi} \equiv (-1)^{i} \equiv 1 \]
+\[ (g^{i})^{2q} \equiv 1 \]
+\[ 2^{2q} \equiv 1 \]
+so $ \order{2} = m \divides 2q = \frac{p-1}{2} $.
+
+Now we have $ 4q \divides im $ and $ m \divides 2q $, hence write $ 2q = m \ell $ and $ im = 4q t $, so $ im = 2q 2t = 2m \ell t \implies i = 2 \ell t \implies im = 2 \ell t m = 4 q t \implies  $
+
+
+
 TODO:
 \end{proof}
 
@@ -175,7 +179,7 @@ Let $ p $ be a prime number.
 \end{exercise}
 
 \begin{proof}
-\case{1} Suppose both $ a $ and $ b $ are quadratic residues modulo $ p $. Then by Lemma 2 above, we can write $ a \equiv g^{2i} $ and $ b \equiv g^{2j} $ for some $ i $ and $ j $, and where $ g $ is a primitive root modulo $ p $. It follows that $ ab \equiv g^{2i} g^{2j} \equiv g^{2(i + j)} $, hence $ ab $ is a primitive root by the lemma.
+\case{1} Suppose both $ a $ and $ b $ are quadratic residues modulo $ p $. Then by Lemma 2 above, we can write $ a \equiv g^{2i} $ and $ b \equiv g^{2j} $ for some $ i $ and $ j $, and where $ g $ is a primitive root modulo $ p $. It follows that $ ab \equiv g^{2i} g^{2j} \equiv g^{2(i + j)} $, hence $ ab $ is a quadratic residue by the lemma.
 
 \case{2} Assume $ a $ is a quadratic residue, and $ b $ is a nonquadratic residue modulo $ p $. By the lemma, we can write $ a \equiv g^{2i} $ and $ b \equiv g^{2j+1} $, for some $ i, j $. Similar to before, we see that $ ab \equiv g^{2i} g^{2j+1} =\equiv g^{2(i + j) + 1} $, hence $ ab $ is a nonquadratic residue modulo $ p $.
 
