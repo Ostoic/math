@@ -1,0 +1,159 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, epsfig, amssymb, blindtext}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pst-node}
+\usepackage{tikz-cd} 
+
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+
+\geometry{papersize={8.5in,11in}}
+
+%opening
+\title{Exercises Regarding \textbf{Grp} and \textbf{Ab}}
+
+\author{Shaun Ostoic}
+\date{\today}
+
+\textwidth 16.5 cm \textheight 21.8 cm
+\addtolength{\oddsidemargin}{-15 mm}
+\addtolength{\evensidemargin}{-15 mm} \topmargin -0.5 cm
+
+\pagestyle{myheadings} \markboth{authors}{} \markright{}
+
+\begin{document}
+
+\baselineskip 18pt
+
+\theoremstyle{definition}
+\newtheorem{definition}{D{\scriptsize EFINITION}}[section]
+\newtheorem{example}{E{\scriptsize XAMPLE}}[section]
+\newtheorem{remark}{R{\scriptsize EMARK}}[section]
+
+\theoremstyle{plain}
+\newtheorem{theorem}{T{\scriptsize HEOREM}}[section]
+\newtheorem{proposition}[theorem] {P{\scriptsize ROPOSITION}}
+\newtheorem{corollary}[theorem]{C{\scriptsize OROLLARY}}
+\newtheorem{lemma}[theorem]{L{\scriptsize EMMA}}
+
+
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+
+\maketitle
+
+\begin{enumerate}
+\item Let $ \varphi : G \to H $ be a morphism in a category $ C $ with products. Explain why there is a unique morphism $ (\varphi \times \varphi) : G \times G \to H \times H $ compatible in the evident way with the natural projections.
+
+\begin{solution}
+Considering the universal property for $ G \times G $, it provides us with the two natural projection morphisms: $ \pi^1_G : G \times G \to G $  and $ \pi^2_G : G \times G \to G $ mapping onto the first and second components, respectively. Let $ \pi^1_H, \pi^2_H $ be the respective natural projections for $ H \times H $. We have the two morphisms $ \varphi \circ \pi^i_G : G \times G \to H $, for each i, yielding the following diagram.
+\[ \begin{tikzcd}
+		& H \times H \arrow[dr, "\pi^2_H"] \arrow[dl, "\pi^1_H"'] 								& \\
+	H 	& 				 																		& H \\
+	  	& G \times G \arrow[ul, "\varphi \circ \pi^1_G"] \arrow[uu, dashed, "f"] \arrow[ur, "\varphi \circ \pi^2_G"'] 	&
+\end{tikzcd}\]
+
+The universal property for $ H \times H $ guarantees the existence of a morphism $ f : G \times G \to H \times H $ for which $ \pi^2_H \circ f = \varphi \circ \pi^2_G $ and $ \pi^1_H \circ f = \varphi \circ \pi^1_G $. If we think about how such a morphism $ \varphi \times \varphi $ should interact with the natural projections, we want the following relations equations to hold.
+
+\[ \pi ^1_H ( \varphi \times \varphi)(a, b) = \pi^1_H (\varphi(a), \varphi(b)) = \varphi(a) \]
+\[ \pi ^2_H ( \varphi \times \varphi)(a, b) = \pi^2_H (\varphi(a), \varphi(b)) = \varphi(b) \]
+
+Observe that $ \varphi(a) $ is also obtained by mapping $ (a, b) \mapsto a \mapsto \varphi(a) $, which is just $ \varphi(a) = \varphi ( \pi^1_G(a, b)) $. Similarly, $ \varphi(b) = \varphi(\pi^2_G(a, b)) $. That is, a morphism obtained as above is the best candidate for $ \varphi \times \varphi $. Since such a morphism is unique, it's safe to say that this is the morphism we're looking for.
+
+\end{solution}
+\item Let $ \varphi : G \to H, $ $ \psi: H \to K $ be morphisms in a category with products, and consider morphisms between the products $ G \times G $, $ H \times H $, $ K \times K $ as in the previous exercise. Prove that
+\[(\psi \varphi) \times (\psi \varphi) = (\psi \times \psi) (\varphi \times \varphi). \]
+
+\begin{solution}
+Similar to last time, $ \psi \circ \varphi \circ \pi^1_G$ and $ \psi \circ \varphi \circ \pi^2_G $ are morphisms from $ G \times G $ to $ K $. The universal property for $ K \times K $ gives us a unique morphism, which we called $ (\psi \circ \phi) \times (\psi \circ \phi) : G \times G \to K \times K $. To show equality, it suffices to prove that the morpism $ (\psi \times \psi) \circ (\varphi \times \varphi) $ satisfies the universal property for $ K \times K $.
+From the diagram for $ H \times H $
+
+\[ \begin{tikzcd}
+		& H \times H \arrow[dr, "\pi^2_H"] \arrow[dl, "\pi^1_H"'] 								& \\
+	H 	& 				 																		& H \\
+	  	& G \times G \arrow[ul, "\varphi \pi^1_G"] \arrow[uu, dashed, "\varphi \times \varphi"] \arrow[ur, "\varphi \pi^2_G"'] 	&
+\end{tikzcd}\]
+we have the equations
+\begin{equation} \label{H} 
+	\pi^i_H (\varphi \times \varphi) =\varphi \pi^i_G
+\end{equation}
+for i = 1, 2. Similarly, from the diagram for $ K \times K $, 
+\[ \begin{tikzcd}
+		& K \times K \arrow[dr, "\pi^2_K"] \arrow[dl, "\pi^1_K"'] 								& \\
+	K 	& 				 																		& K \\
+	  	& H \times H \arrow[ul, "\psi \pi^1_H"] \arrow[uu, dashed, "\psi \times \psi"] \arrow[ur, "\psi \pi^2_H"']	&
+\end{tikzcd}\]
+we have the equations
+\begin{equation} \label{K} 
+	\pi^i_K (\psi \times \psi) =\psi \pi^i_H
+\end{equation}
+for i = 1, 2. Let us consider how the universal property for $ K \times K $ from $ G \times G $ should look, then we will use the above equations to show equality.
+\[ \begin{tikzcd}
+		& K \times K \arrow[dr, "\pi^2_K"] \arrow[dl, "\pi^1_K"'] 								& \\
+	K 	& 				 																		& K \\
+	  	& G \times G \arrow[ul, "(\psi \varphi) \pi^1_G"] \arrow[uu, dashed, "(\psi \varphi) \times (\psi \varphi)" description] \arrow[ur, "(\psi \varphi) \pi^2_G"']	&
+\end{tikzcd}\]
+Thus, we need to prove $ \pi^i_K (\psi \times \psi) (\varphi \times \varphi) = (\psi \varphi) \pi^i_G $. Applying (\ref{K}) immediately yields
+\begin{align*}
+ [\pi^i_K (\psi \times \psi) ](\varphi \times \varphi) &= [\psi \pi^i_H](\varphi \times \varphi)  \\
+ &= \psi [\pi^i_H (\varphi \times \varphi)] \\
+ &= \psi ( \varphi \pi^i_G ) \text{\hspace{2cm} (by equation (\ref{H}))}. 
+\end{align*}
+By the universal property of products, the morphism from $ G \times G $ to $ K \times K $ is unique, which proves equality.
+\end{solution}
+
+\item Show that if $ G, H $ are abelian groups, then $ G \times H $ satisfies the universal property for coproducts in \textbf{Ab}.
+
+\begin{solution}
+The obvious choice for embeddings of $ G, H $ into $ G \times H $ works here; denote them by $ i_G, i_H $. Let $ Z \in \textbf{Ab}$ and let $  \varphi_G : G \to Z$, $ \varphi_H : H \to Z$ be morphisms. Define the map
+\begin{align*}
+	f : G \times H & \to  Z\\
+	(g, h)& \mapsto \varphi_G(g) \varphi_H(h).
+\end{align*}
+We see that $ f $ is a map satisfying the commutativity of the diagram for a product:
+\begin{align*}
+	f(i_G(g)) &= f(g, 1)\\
+			&= \varphi_G(g) \varphi_H(1)\\
+			&= \varphi_G(g),
+\end{align*}
+hence $ f i_G = \varphi_G $ and similarly, $ f i_H = \varphi_H $. Let us see whether $ f $ preserves structure. For $ (g_i, h_i) \in G \times H $, where $ i = 1, 2 $, we have
+\begin{align*}
+	f((g_1, h_1) (g_2, h_2)) &= f((g_1 g_2, h_1 h_2))\\
+	&= \varphi_G(g_1 g_2) \varphi_H(h_1 h_2)\\
+	&= \varphi_G(g_1) \varphi_G(g_2) \varphi_H(h_1) \varphi_H(h_2)\\
+	&= \varphi_G(g_1) \varphi_H(h_1) \varphi_G(g_2) \varphi_H(h_2)\\
+	&= f((g_1, h_1)) f((g_2, h_2)).
+\end{align*}
+Therefore, $ f $ is a group homomorphism. To show existence, let $ \psi : G \times H \to Z$ be another such morphism for which $ \psi i_G = \varphi_G $ and $ \psi i_H = \varphi_H $. Observe
+\begin{align*}
+	\psi(i_G(g)) = \psi (g, 1) &= \varphi_G(g)\\
+	&= \varphi_G(g) \varphi_H(1)\\
+	&= f(g, 1),
+\end{align*}
+hence $ \psi(g, 1) = f(g, 1) $. Similarly, $ \psi(1, h) = f(1, h) $. For an arbitrary $ (g, h) \in G \times H $, $ (g, h) = (g, 1) (1, h) $, so these together prove $ \psi(g, h) = f(g, h) $, so $ f $ is indeed unique.
+We can see precisely where $ f $ would fail to be a group homomorphism by looking at the above equations. In order for there to be coproducts in \textbf{Ab} it is necessary that $ Z $ is an abelian group, for each $ Z $. Otherwise, we would be unable to commute the elements into a form where $ f $ preserves structure. This is exactly the reason that the regular cartesian product fails to be a coproduct in \textbf{Grp}. Finding a counterexample would consist of taking the cartesian product of two abelian groups, then considering the map from the product into a non-abelian group.
+\end{solution}
+
+\item Consider the product of the cyclic groups $ C_2, C_3 $. By the exercise above, $ C_2 \times C_3 $ is a coproduct in \textbf{Ab}. Show that it is \textit{not} a coproduct of $ C_2, C_3 $ in \textbf{Grp}.
+
+\begin{solution}
+Let us consider the coproduct mapping into the symmetric group of order $ 3 $, $ S_3 $. Define $ \varphi : C_2 \to S_3$ by $ n \mapsto (1 2)^n$ and $ \psi : C_3 \to S_3 $ by $ n \mapsto (1 2 3)^n $. It is easy to see that these are embedding homomorphisms. By the universal property there is a homomorphism $ \varphi \times \psi : C_2 \times C_3 \to S_3 $. Following the remark at the end of the previous exercise, let us investigate the commutativity between $ C_2 \times C_3 $ and $ S_3 $ through $ \varphi \times \psi $. As of now, the value of $ \varphi \times \psi $ is undetermined. It is easy to see that, since $ (\varphi \times \psi)(0, m) = \psi(m) $ and $ (\varphi \times \psi)(n, 0) = \varphi(n) $, it follows that $ (\varphi \times \psi)((n, 0) (0, m))) = (\varphi \times \psi)(n, 0) (\varphi \times \psi)(0, m) = \varphi(n) \psi(m) $, since $ (\varphi \times \psi) $ is a homomorphism. However, this is taxing on the commutativity between $ (1 2) $ and $ (123) $ in $ S_3 $:
+\begin{align*}
+	\varphi(1) \psi(1) = (\varphi \times \psi)(1, 1) &= (\varphi \times \psi)(0 + 1, 1 + 0)\\
+	&= (\varphi \times \psi)[(0, 1) + (1, 0)]\\
+	&= (\varphi \times \psi)(0, 1) (\varphi \times \psi)(1, 0)\\
+	&= [\varphi(0) \psi(1)] [\varphi(1) \psi(0)]\\
+	&= \psi(1) \varphi(1)
+\end{align*}
+We have just shown that $ \varphi(1) \psi(1) = \psi(1) \varphi(1) $, or,
+\begin{align*}
+	\varphi(1) \psi(1) = (1 2) (1 2 3) = (2 3) =  \psi(1) \varphi(1) = (1 2 3) (1 2) = (1 3)
+\end{align*}
+a contradiction. Therefore, $ C_2 \times C_3 $ is not a coproduct. So products and coproducts differ in \textbf{Grp}.
+\end{solution}
+
+\end{enumerate}
+
+\end{document}
+
